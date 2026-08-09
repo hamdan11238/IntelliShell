@@ -10,7 +10,7 @@
 #include <fcntl.h>
 #include <termios.h>
 #include <unistd.h>
-extern char **environ; // look at this on web 
+extern char **environ;
 
 namespace fs = std::filesystem;
 
@@ -626,13 +626,15 @@ int main() {
 
     if(!redirection.stdout_file.empty()){
         // Restore original stdout if it was redirected
+        redirection.stdout_file = "";
         dup2(saved_stdout, STDOUT_FILENO);
         close(saved_stdout);
 }
 
    if(!redirection.stderr_file.empty()){
         // Restore original stdout if it was redirected
-        dup2(saved_stderr, STDERR_FILENO);
+       redirection.stderr_file = "";
+       dup2(saved_stderr, STDERR_FILENO);
         close(saved_stderr);
 }
     }
