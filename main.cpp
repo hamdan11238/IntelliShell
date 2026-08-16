@@ -66,7 +66,7 @@ std::vector<std::string> find_executables(const std::string& prefix) {
     std::stringstream ss(path_env);
     std::string dir;
 
-    while (getline(ss, dir, ':')) {
+    while (getline(ss, dir, 'PATH_SEPARATOR')) {
 
         if (!fs::exists(dir)) continue;
 
