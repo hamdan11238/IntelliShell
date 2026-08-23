@@ -71,7 +71,7 @@ You can then interact with the shell normally and use IntelliShell's natural-lan
 Example:
 
 ```text
-$ shellai what does ls do
+$ shellai command to create a folder hello
 ```
 
 ## Model Path
