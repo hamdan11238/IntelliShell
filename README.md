@@ -5,7 +5,7 @@ IntelliShell is a Unix shell assistant that combines a C++ shell with a Python-b
 ## Project Structure
 
 ```text
-ShellAI/
+IntelliShell/
 ├── main.cpp
 ├── assistant.py
 ├── merged_model_folder/
@@ -16,7 +16,7 @@ ShellAI/
 
 The model is not included in this repository because of its size.
 
-Before running ShellAI, download the required `merged_model_folder` from Hugging Face and place it in the **root directory of this project**.
+Before running IntelliShell, download the required `merged_model_folder` from Hugging Face and place it in the **root directory of this project**.
 
 After downloading, your project should look like:
 
@@ -57,16 +57,16 @@ pip install transformers torch
 From the project root:
 
 ```bash
-g++ -std=c++17 main.cpp -o shellai
+g++ -std=c++17 main.cpp -o IntelliShell
 ```
 
 ## Run
 
 ```bash
-./shellai
+./IntelliShell
 ```
 
-You can then interact with the shell normally and use ShellAI's natural-language functionality.
+You can then interact with the shell normally and use IntelliShell's natural-language functionality.
 
 Example:
 
