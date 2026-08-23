@@ -1,6 +1,6 @@
-# ShellAI
+#IntelliShell
 
-ShellAI is a Unix shell assistant that combines a C++ shell with a Python-based language model to help users interact with the terminal using natural-language commands.
+IntelliShell is a Unix shell assistant that combines a C++ shell with a Python-based language model to help users interact with the terminal using natural-language commands.
 
 ## Project Structure
 
@@ -21,7 +21,7 @@ Before running ShellAI, download the required `merged_model_folder` from Hugging
 After downloading, your project should look like:
 
 ```text
-ShellAI/
+IntelliShell/
 ├── main.cpp
 ├── assistant.py
 ├── merged_model_folder/
