@@ -1,4 +1,4 @@
-#IntelliShell
+# IntelliShell
 
 IntelliShell is a Unix shell assistant that combines a C++ shell with a Python-based language model to help users interact with the terminal using natural-language commands.
 
