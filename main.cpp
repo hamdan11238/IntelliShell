@@ -10,7 +10,8 @@
 #include <fcntl.h>
 #include <termios.h>
 #include <unistd.h>
-extern char **environ;
+#include <algorithm>
+extern char **environ; // look at this on web 
 
 namespace fs = std::filesystem;
 
@@ -66,7 +67,7 @@ std::vector<std::string> find_executables(const std::string& prefix) {
     std::stringstream ss(path_env);
     std::string dir;
 
-    while (getline(ss, dir, 'PATH_SEPARATOR')) {
+    while (getline(ss, dir, PATH_SEPARATOR))   {
 
         if (!fs::exists(dir)) continue;
 
@@ -409,6 +410,32 @@ void handle_type(const std::vector<std::string>& tokens,
     // Not found
     print_error(command);
 }
+void handle_shellai(const std::vector<std::string>& tokens) {
+    if (tokens.size() < 2) {
+        std::cerr << "shellai: missing prompt" << std::endl;
+        return;
+    }
+
+    // Join remaining tokens back into one prompt string
+    std::string prompt;
+    for (size_t i = 1; i < tokens.size(); i++) {
+        if (i > 1) prompt += " ";
+        prompt += tokens[i];
+    }
+
+    int pid = fork();
+    if (pid == 0) {
+        // Child: exec python3 assistant.py "<prompt>"
+        execlp("python3", "python3", "assistant.py", prompt.c_str(), (char*)nullptr);
+        perror("execlp"); // only reached if exec fails
+        std::exit(1);
+    } else if (pid > 0) {
+        int status;
+        waitpid(pid, &status, 0);
+    } else {
+        perror("fork");
+    }
+}
 
 // ============================================================================
 // Main Shell Loop
@@ -579,11 +606,11 @@ int main() {
             } else{
                 handle_cd(tokens[1]);
             }
-        }
-        else if(command == "history"){
+        }else if(command == "history"){
             print_history();
-        }
-        else{
+        }else if (command == "shellai") {
+            handle_shellai(tokens);
+        }else{
             // // Unknown command
             // print_error(command);
 
@@ -626,15 +653,13 @@ int main() {
 
     if(!redirection.stdout_file.empty()){
         // Restore original stdout if it was redirected
-        redirection.stdout_file = "";
         dup2(saved_stdout, STDOUT_FILENO);
         close(saved_stdout);
 }
 
    if(!redirection.stderr_file.empty()){
         // Restore original stdout if it was redirected
-       redirection.stderr_file = "";
-       dup2(saved_stderr, STDERR_FILENO);
+        dup2(saved_stderr, STDERR_FILENO);
         close(saved_stderr);
 }
     }
