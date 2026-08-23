@@ -13,7 +13,7 @@ import sys
 
 # Path to the merged model saved by the notebook
 # (model.save_pretrained_merged("/content/qwen35_merged", ...))
-MODEL_PATH = "/src/merged_model_folder"
+MODEL_PATH = "./merged_model_folder"
 
 
 def main():
