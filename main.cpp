@@ -11,7 +11,7 @@
 #include <termios.h>
 #include <unistd.h>
 #include <algorithm>
-extern char **environ; // look at this on web 
+extern char **environ; 
 
 namespace fs = std::filesystem;
 
