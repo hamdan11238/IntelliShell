@@ -16,7 +16,8 @@ IntelliShell/
 
 The model is not included in this repository because of its size.
 
-Before running IntelliShell, download the required `merged_model_folder` from Hugging Face and place it in the **root directory of this project**.
+Before running IntelliShell, create a `merged_model_folder` and download the required model artefacts from Hugging Face and place it in the **model_merge_folder**.
+[download model artefacts from here](https://huggingface.co/hamdan001/qwen-3.5-0.8B-bash-command-fine-tuned/upload/main)
 
 After downloading, your project should look like:
 
